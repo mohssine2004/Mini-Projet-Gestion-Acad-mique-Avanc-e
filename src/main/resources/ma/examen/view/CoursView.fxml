@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.examen.controller.CoursController"
+            fitToWidth="true" style="-fx-background-color: #f4f6f9;">
+    <content>
+        <VBox spacing="20.0" style="-fx-background-color: #f4f6f9;">
+            <padding>
+                <Insets top="24.0" right="24.0" bottom="24.0" left="24.0"/>
+            </padding>
+            <children>
+                <!-- Header Section -->
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <VBox>
+                            <Label text="Gestion des Cours" styleClass="title"
+                                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1f2937;" />
+                            <Label text="Créez et gérez les cours de votre établissement"
+                                   style="-fx-font-size: 14px; -fx-text-fill: #6b7280; -fx-padding: 4 0 0 0;"/>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Course Information Card -->
+                <VBox spacing="16.0" styleClass="card"
+                      style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 24; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 20, 0, 0, 2);">
+                    <children>
+                        <Label text="📚 Informations du Cours"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+
+                        <!-- Course Input Fields -->
+                        <HBox spacing="16.0">
+                            <children>
+                                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                    <Label text="Code du cours"
+                                           style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                    <TextField fx:id="txtCode" promptText="Ex: INF101"
+                                               style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12; -fx-font-size: 14px;"/>
+                                </VBox>
+
+                                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                    <Label text="Intitulé du cours"
+                                           style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                    <TextField fx:id="txtIntitule" promptText="Ex: Introduction à la Programmation"
+                                               style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 12; -fx-font-size: 14px;"/>
+                                </VBox>
+                            </children>
+                        </HBox>
+
+                        <!-- Action Buttons -->
+                        <HBox spacing="10.0" style="-fx-padding: 8 0 0 0;">
+                            <children>
+                                <Button text="➕ Ajouter" onAction="#handleAdd"
+                                        style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 20; -fx-font-weight: 600; -fx-cursor: hand; -fx-font-size: 14px;"/>
+                                <Button text="🔄 Mettre à jour" onAction="#handleUpdate"
+                                        style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 20; -fx-font-weight: 600; -fx-cursor: hand; -fx-font-size: 14px;"/>
+                                <Button text="🗑 Supprimer" onAction="#handleDelete"
+                                        style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 20; -fx-font-weight: 600; -fx-cursor: hand; -fx-font-size: 14px;"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <!-- Assignment and Delete Card -->
+                <VBox spacing="16.0" styleClass="card"
+                      style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 24; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 20, 0, 0, 2);">
+                    <children>
+                        <Label text="🎓 Affectation aux Filières"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+
+                        <HBox spacing="16.0" alignment="CENTER_LEFT">
+                            <children>
+                                <VBox spacing="6.0" HBox.hgrow="ALWAYS">
+                                    <Label text="Sélectionner une filière"
+                                           style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                    <ComboBox fx:id="comboFilieres" promptText="Choisir une filière"
+                                              prefWidth="300.0"
+                                              style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-font-size: 14px;"/>
+                                </VBox>
+
+                                <VBox spacing="6.0">
+                                    <Label text=" " style="-fx-font-size: 13px;"/>
+                                    <Button fx:id="btnAffecter" text="✓ Affecter à la filière" onAction="#handleAffecter"
+                                            style="-fx-background-color: #8b5cf6; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 12 20; -fx-font-weight: 600; -fx-cursor: hand; -fx-font-size: 14px;"/>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <!-- Courses Table Card -->
+                <VBox spacing="12.0" styleClass="card" prefHeight="500.0"
+                      style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 20, 0, 0, 2);">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                            <children>
+                                <Label text="📋 Liste des Cours"
+                                       style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+                                <Pane HBox.hgrow="ALWAYS"/>
+                                <Label fx:id="lblTotalCours" text="Total: 0 cours"
+                                       style="-fx-font-size: 13px; -fx-text-fill: #6b7280; -fx-font-weight: 600;"/>
+                            </children>
+                        </HBox>
+
+                        <TableView fx:id="tableCours" VBox.vgrow="ALWAYS" prefHeight="400.0">
+                            <columns>
+                                <TableColumn fx:id="colCode" text="Code" prefWidth="200"
+                                             style="-fx-alignment: CENTER;"/>
+                                <TableColumn fx:id="colIntitule" text="Intitulé" prefWidth="600" />
+                            </columns>
+                        </TableView>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>

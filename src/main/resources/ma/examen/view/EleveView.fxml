@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ma.examen.controller.EleveController"
+            fitToWidth="true" style="-fx-background-color: #f4f6f9;">
+    <content>
+        <VBox spacing="20.0" style="-fx-background-color: #f4f6f9;">
+            <padding>
+                <Insets top="24.0" right="24.0" bottom="24.0" left="24.0"/>
+            </padding>
+            <children>
+                <!-- Header Section -->
+                <HBox alignment="CENTER_LEFT" spacing="15.0">
+                    <children>
+                        <VBox>
+                            <Label text="Gestion des Étudiants" styleClass="title"
+                                   style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #1f2937;" />
+                            <Label text="Gérez les informations et inscriptions des étudiants"
+                                   style="-fx-font-size: 14px; -fx-text-fill: #6b7280; -fx-padding: 4 0 0 0;"/>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <!-- Student Information Card -->
+                <VBox spacing="16.0" styleClass="card"
+                      style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 24; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 20, 0, 0, 2);">
+                    <children>
+                        <Label text="📋 Informations de l'Étudiant"
+                               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+
+                        <GridPane hgap="16.0" vgap="14.0">
+                            <columnConstraints>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                                <ColumnConstraints percentWidth="25"/>
+                            </columnConstraints>
+                            <children>
+                                <!-- Row 1 -->
+                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                                    <Label text="Matricule" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                    <TextField fx:id="txtMatricule" promptText="Ex: 2024001"
+                                               style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10;"/>
+                                </VBox>
+
+                                <VBox spacing="6.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                                    <Label text="Nom" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                    <TextField fx:id="txtNom" promptText="Nom de famille"
+                                               style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10;"/>
+                                </VBox>
+
+                                <VBox spacing="6.0" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                                    <Label text="Prénom" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                    <TextField fx:id="txtPrenom" promptText="Prénom"
+                                               style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10;"/>
+                                </VBox>
+
+                                <VBox spacing="6.0" GridPane.columnIndex="3" GridPane.rowIndex="0">
+                                    <Label text="Statut" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                    <ComboBox fx:id="comboStatut" prefWidth="200.0" promptText="Sélectionner"
+                                              style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+                                </VBox>
+
+                                <!-- Row 2 -->
+                                <VBox spacing="6.0" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                    <Label text="Email" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                    <TextField fx:id="txtEmail" promptText="etudiant@exemple.ma"
+                                               style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10;"/>
+                                </VBox>
+
+                                <VBox spacing="6.0" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="1">
+                                    <Label text="Filière" style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                    <ComboBox fx:id="comboFiliere" prefWidth="300.0" promptText="Choisir une filière"
+                                              style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+                                </VBox>
+                            </children>
+                        </GridPane>
+
+                        <!-- Action Buttons -->
+                        <HBox spacing="10.0" style="-fx-padding: 8 0 0 0;">
+                            <children>
+                                <Button text="✓ Enregistrer" onAction="#handleSave"
+                                        style="-fx-background-color: #2563eb; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 20; -fx-font-weight: 600; -fx-cursor: hand;"/>
+                                <Button text="✎ Modifier" onAction="#handleUpdate"
+                                        style="-fx-background-color: #f59e0b; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 20; -fx-font-weight: 600; -fx-cursor: hand;"/>
+                                <Button text="✕ Supprimer" onAction="#handleDelete"
+                                        style="-fx-background-color: #ef4444; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 20; -fx-font-weight: 600; -fx-cursor: hand;"/>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <!-- Main Content Area -->
+                <HBox spacing="20.0" prefHeight="500.0">
+                    <children>
+                        <!-- Students Table Card -->
+                        <VBox spacing="12.0" HBox.hgrow="ALWAYS" styleClass="card"
+                              style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 20, 0, 0, 2);">
+                            <children>
+                                <Label text="👥 Liste des Étudiants"
+                                       style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+                                <TableView fx:id="tableEleves" prefHeight="400.0" VBox.vgrow="ALWAYS">
+                                    <columns>
+                                        <TableColumn fx:id="colMatricule" text="Matricule" prefWidth="100"
+                                                     style="-fx-alignment: CENTER;"/>
+                                        <TableColumn fx:id="colNom" text="Nom" prefWidth="130" />
+                                        <TableColumn fx:id="colPrenom" text="Prénom" prefWidth="130" />
+                                        <TableColumn fx:id="colEmail" text="Email" prefWidth="200" />
+                                        <TableColumn fx:id="colStatut" text="Statut" prefWidth="80"
+                                                     style="-fx-alignment: CENTER;"/>
+                                        <TableColumn fx:id="colFiliere" text="Filière" prefWidth="80"
+                                                     style="-fx-alignment: CENTER;"/>
+                                    </columns>
+                                </TableView>
+                            </children>
+                        </VBox>
+
+                        <!-- Right Sidebar - Courses & Administrative -->
+                        <VBox spacing="20.0" prefWidth="380.0">
+                            <children>
+                                <!-- Courses Card -->
+                                <VBox spacing="12.0" styleClass="card"
+                                      style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 20, 0, 0, 2);">
+                                    <children>
+                                        <Label text="📚 Inscription aux Cours"
+                                               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+                                        <Label text="Sélectionnez plusieurs cours"
+                                               style="-fx-font-size: 12px; -fx-text-fill: #6b7280;"/>
+                                        <ListView fx:id="listViewCourses" prefHeight="180.0"
+                                                  style="-fx-background-radius: 8; -fx-border-radius: 8; -fx-border-color: #e5e7eb;"/>
+                                        <Button text="📝 Inscrire aux cours sélectionnés" onAction="#handleEnrollSelectedCourses"
+                                                maxWidth="Infinity"
+                                                style="-fx-background-color: #10b981; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 16; -fx-font-weight: 600; -fx-cursor: hand;"/>
+                                    </children>
+                                </VBox>
+
+                                <!-- Administrative File Card -->
+                                <VBox spacing="12.0" styleClass="card"
+                                      style="-fx-background-color: white; -fx-background-radius: 16; -fx-padding: 20; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 20, 0, 0, 2);">
+                                    <children>
+                                        <Label text="📁 Dossier Administratif"
+                                               style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #111827;"/>
+
+                                        <VBox spacing="10.0">
+                                            <children>
+                                                <VBox spacing="6.0">
+                                                    <Label text="Numéro d'inscription"
+                                                           style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                                    <TextField fx:id="txtNumeroInscription" promptText="Ex: INS-2024-001"
+                                                               style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8; -fx-padding: 10;"/>
+                                                </VBox>
+
+                                                <VBox spacing="6.0">
+                                                    <Label text="Date de création"
+                                                           style="-fx-font-size: 13px; -fx-font-weight: 600; -fx-text-fill: #374151;"/>
+                                                    <DatePicker fx:id="dateCreation" prefWidth="320.0"
+                                                                style="-fx-background-color: #f9fafb; -fx-border-color: #e5e7eb; -fx-border-radius: 8; -fx-background-radius: 8;"/>
+                                                </VBox>
+                                            </children>
+                                        </VBox>
+
+                                        <HBox spacing="10.0">
+                                            <children>
+                                                <Button fx:id="btnCreateDossier" text="➕ Créer" onAction="#handleCreateDossier"
+                                                        HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                                                        style="-fx-background-color: #8b5cf6; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 16; -fx-font-weight: 600; -fx-cursor: hand;"/>
+                                                <Button fx:id="btnUpdateDossier" text="🔄 Modifier" onAction="#handleUpdateDossier"
+                                                        HBox.hgrow="ALWAYS" maxWidth="Infinity"
+                                                        style="-fx-background-color: #06b6d4; -fx-text-fill: white; -fx-background-radius: 8; -fx-padding: 10 16; -fx-font-weight: 600; -fx-cursor: hand;"/>
+                                            </children>
+                                        </HBox>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+            </children>
+        </VBox>
+    </content>
+</ScrollPane>
